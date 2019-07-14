@@ -1,0 +1,21 @@
+Quiz
+
+
+
+
+
+
+
+#Assignment 2
+import re
+name = input("Enter file:")
+if len(name) < 1 : name = "regex_sum_.txt"
+handle = open(name)
+sum=0
+for line in handle:
+    line=line.rstrip()
+    stuff=re.findall('[0-9]+',line)
+    for v in stuff:
+        var=int(v)
+        sum=sum+var
+print(sum)
