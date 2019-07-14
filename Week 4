@@ -1,0 +1,84 @@
+# word count in url link 
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
+import urllib.parse, urllib.error
+fhand=urllib.request.urlopen("http://data.pr4e.org/romeo.txt")
+counts=dict()
+for line in fhand:
+    words=line.decode().split()
+    for word in words:
+        counts[word]=counts.get(word,0)+1
+print(counts)
+
+
+
+# to find all anchor tags in a web page
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
+    
+    import BeautifulSoup
+from bs4 import BeautifulSoup
+html = urllib.request.urlopen("http://www.dr-chuck.com/page1.htm").read()
+soup = BeautifulSoup(html, "html.parser")
+
+tags=soup('a')
+for tag in tags:
+    print(tag.get('href',None))
+
+#spans = soup('span')
+#numbers=0
+#for span in spans:
+#    numbers=number + (int(span.string))
+#print(numbers)
+
+
+
+Assignment 1
+
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
+from bs4 import BeautifulSoup
+
+page = urllib2.urlopen(input("Enter URL: "))
+soup = BeautifulSoup(page, "html.parser")
+
+spans = soup('span')
+
+numbers = 0
+
+for span in spans:
+    numbers+=(int(span.string))
+
+print (numbers)
+
+Assignment 2
+
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
+from bs4 import BeautifulSoup
+
+url = input("Enter URL: ")
+count = int(input("Enter count: "))
+position = int(input("Enter position: "))
+
+names = []
+
+while count > 0:
+    print ("retrieving: ",format(url))
+    page = urllib2.urlopen(url)
+    soup = BeautifulSoup(page)
+    anchors = soup('a')
+    name = anchors[position-1].string
+    names.append(name)
+    url = anchors[position-1]['href']
+    count -= 1
+
+print (names[-1])
