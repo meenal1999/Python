@@ -1,0 +1,19 @@
+import urllib.request as urlib2
+from xml.etree import ElementTree
+
+
+def par(url):
+    counts = []
+    page = urllib.request.urlopen(url)
+    tree = ElementTree.parse(page)
+
+    comments = tree.findall('comments/comment')
+
+    for comment in comments:
+        counts.append(int(comment.find('count').text))
+
+    print(sum(counts))
+
+    
+#par('http://python-data.dr-chuck.net/comments_42.xml')
+par('http://py4e-data.dr-chuck.net/comments_206692.xml')
